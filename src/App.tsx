@@ -1,34 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import "./App.css";
+
+//Importing ApiKey to call API
+import { apiKey } from "./assets/api";
 
 function App() {
-  const [count, setCount] = useState(0)
+	useEffect(() => {
+		const APICALL = async () => {
+			const response = await fetch(
+				"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=abbe32b68df38fa373c4bec565af4eb7&tags=moutains&per_page=24&format=json&nojsoncallback=1"
+			);
+			const finalResponse = await response.json();
+			console.log(finalResponse.photos.photo.map((image: {}) => image));
+		};
 
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+		APICALL();
+	}, []);
+
+	return (
+		<div className='App'>
+			<h1>Hello World</h1>
+		</div>
+	);
 }
 
-export default App
+export default App;
+

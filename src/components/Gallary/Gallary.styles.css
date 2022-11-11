@@ -1,0 +1,12 @@
+.gallary {
+	display: grid;
+	gap: 50px;
+	grid-template-columns: repeat(4, 1fr);
+	margin: 100px 200px;
+}
+
+img {
+	height: 250px;
+	width: 250px;
+	justify-self: center;
+}
